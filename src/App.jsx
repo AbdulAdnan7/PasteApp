@@ -1,6 +1,6 @@
 
 import './App.css'
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Home from './Components/Home'
 import Pastes from './Components/Pastes'
@@ -34,9 +34,7 @@ function App() {
 
   return (
     <>
-      <div>
-        Hello
-      </div>
+    <RouterProvider router={route} />
     </>
   )
 }

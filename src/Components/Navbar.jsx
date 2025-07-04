@@ -1,9 +1,15 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <div>
-      
+    <div className='flex flex-row justify-center mt-2 gap-6'>
+        <NavLink to='/' >
+            Home
+        </NavLink>
+        <NavLink to='/pastes' >
+            Pastes
+            </NavLink>      
     </div>
   )
 }

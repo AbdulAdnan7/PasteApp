@@ -1,7 +1,18 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+let storedPastes = [];
+
+try {
+    const raw = localStorage.getItem('pastes');
+    storedPastes = raw ? JSON.parse(raw) : []
+} catch (error) {
+    console.log('invalid JSONS');
+    localStorage.removeItem('pastes');
+    storedPastes = [];
+}
+
 const initialState = {
-    paste: localStorage.getItem('pastes') ? JSON.parse(localStorage.getItem('pastes')) : []
+    pastes: storedPastes
 }
 
 export const pasteSlice = createSlice({
@@ -9,7 +20,9 @@ export const pasteSlice = createSlice({
     initialState,
     reducers : {
    addToPaste: (state, action) => {
-
+    const paste = action.payload;
+    state.pastes.push(paste);
+    localStorage.setItem('pastes', JSON.stringify(state.pastes))
    },
    updateToPaste: (state, action) => {
 
