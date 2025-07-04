@@ -4,10 +4,15 @@ import {useDispatch} from 'react-redux'
 import { addToPaste, updateToPaste } from '../redux/pasteSlice';
 
 const Home = () => {
+  //for title to add and update using input
     const [title, setTitle] = useState('');
+    //for value of textare
     const [value, setValue] = useState('');
+    //for searching paste
     const [searchParams, setSearchParams] = useSearchParams();
+    //pasteId
     const pasteId = searchParams.get('PasteId');
+    //using useDispach for adding,updating and deleting from pasteSlice
     const dispatch = useDispatch()
 
     function createPaste() {
@@ -24,7 +29,10 @@ const Home = () => {
     } else {
      dispatch(addToPaste(paste))
     }
-
+   
+    setTitle('');
+    setValue('');
+    searchParams({})
     }
   return (
     <div>
