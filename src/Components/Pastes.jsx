@@ -39,10 +39,14 @@ const Pastes = () => {
             </div>
             <div className='flex justify-between mt-2'>
               <button>
+                <a href={`/?pasteId=${paste?._Id}`}>
                 Edit
+                </a>
               </button>
                <button>
-                view
+                <a href={`/pastes/${paste?.Id}`}>
+                  view
+                </a>
               </button>
                <button onClick={() => handleDelete(paste?._id)}>
                 delete

@@ -17,14 +17,14 @@ const initialState = {
 }
 
 export const pasteSlice = createSlice({
-    name: 'Paste',
+    name: 'paste',
     initialState,
     reducers: {
         addToPaste: (state, action) => {
             const paste = action.payload;
             state.pastes.push(paste);
             localStorage.setItem('pastes', JSON.stringify(state.pastes));
-            toast('paste created Successfully')
+            toast.success('paste created Successfully')
         },
         updateToPaste: (state, action) => {
             const paste = action.payload;
@@ -35,12 +35,13 @@ export const pasteSlice = createSlice({
 
                 localStorage.setItem('pastes', JSON.stringify(state.pastes))
             }
+            toast.success('paste updated')
         },
         removeToPaste: (state, action) => {
-            const pasteId = action.payload;
+            const pasteid = action.payload;
 
-            console.log(pasteId);
-            const index = state.pastes.findIndex((item) => item._id === pasteId);
+            console.log(pasteid);
+            const index = state.pastes.findIndex((item) => item._id === pasteid);
 
       if(index >= 0) {
         state.pastes.splice(index, 1);

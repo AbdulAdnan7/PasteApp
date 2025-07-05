@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { addToPaste, updateToPaste } from '../redux/pasteSlice';
+import { useEffect } from 'react';
 
 const Home = () => {
   //for title to add and update using input
@@ -11,9 +12,18 @@ const Home = () => {
     //for searching paste
     const [searchParams, setSearchParams] = useSearchParams();
     //pasteId
-    const pasteId = searchParams.get('PasteId');
+    const pasteId = searchParams.get('pasteId');
     //using useDispach for adding,updating and deleting from pasteSlice
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const allPastes = useSelector((state) => state.paste.pastes)
+
+  useEffect(() => {
+       if(pasteId) {
+        const paste = allPastes.find((p) => p._Id === pasteId);
+        setTitle(paste.title);
+        setValue(paste.content)
+       }
+  }, [pasteId])
 
     function createPaste() {
       const paste = {
@@ -45,7 +55,7 @@ const Home = () => {
         onChange={(e) => setTitle(e.target.value)}
          className='bg-white text-black border-black px-3 py-1'
         /> <button onClick={createPaste} className='bg-cyan-500 hover:bg-cyan-600 px-2 py-1 ml-2 rounded'>{
-            pasteId ? 'update my paste' : 'create paste'
+            pasteId ? 'update paste' : 'create paste'
         }</button>
       </div>
 
