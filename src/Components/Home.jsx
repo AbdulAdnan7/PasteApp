@@ -29,7 +29,7 @@ const Home = () => {
       const paste = {
         title: title,
         content: value,
-        _Id: pasteId ||  Date.now().toString(35),
+        _id: pasteId ||  Date.now().toString(35),
       createdAt: new Date().toISOString(),
       }
        console.log("Saving paste:", paste); 

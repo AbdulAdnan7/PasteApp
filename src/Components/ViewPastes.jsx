@@ -6,11 +6,11 @@ import { useEffect } from 'react';
 
 const ViewPastes = () => {
 
-  const {Id} = useParams();
+  const {id} = useParams();
 
   const allPastes = useSelector((state) => state.paste.pastes);
 
-  const paste = allPastes.filter((p) => p._id === Id)[0]
+  const paste = allPastes.filter((p) => p._id === id)[0]
   console.log('paste', paste)
 
   
